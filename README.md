@@ -1,6 +1,6 @@
-# Ansible Lab: Hybrid Infrastructure Management
+# ansible-modular-automation
 
-Система управления гибридной инфраструктурой (Linux и Windows) на базе Ansible.
+Система модульной автоматизации гибридной инфраструктуры (Linux и Windows) на базе Ansible.
 
 ## 📁 Структура проекта
 
@@ -16,10 +16,28 @@
 
 ## 🚀 Порядок развертывания
 
-### 1. Подготовка среды
-Требования к установленному ПО и библиотекам:
+### 1. Подготовка локальной среды (Python VENV)
+Для корректной работы Ansible и его модулей рекомендуется использовать изолированное виртуальное окружение:
+
+**Обновление системы и системных зависимостей (Debian/Ubuntu):**
 ```bash
-pip install pywinrm
+sudo apt update && sudo apt upgrade -y
+# Установка необходимых компонентов сборки (если возникают ошибки компиляции)
+sudo apt install -y build-essential libssl-dev libffi-dev python3-dev 
+```
+
+**Создание и активация виртуального окружения:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**Установка Ansible и дополнительных библиотек:**
+```bash
+# Обновление базовых инструментов pip
+pip install --upgrade pip setuptools wheel
+# Установка Ansible и библиотеки для работы с Windows (WinRM)
+pip install ansible pywinrm
 ```
 
 ### 2. Управление секретами (Ansible Vault)
@@ -44,3 +62,10 @@ ansible-playbook site.yaml --ask-vault-pass
 *   [Диагностика и контроль Windows](docs/WINDOWS_TESTING.md)
 *   [Диагностика и контроль Linux](docs/LINUX_TESTING.md)
 *   [Методология защиты данных (Vault)](docs/VAULT_GUIDE.md)
+
+## 🔗 Официальные ресурсы Ansible
+Внешние источники для глубокого изучения и поиска модулей:
+*   [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html) — Основной портал документации.
+*   [Ansible Module Index](https://docs.ansible.com/ansible/latest/collections/index.html) — Полный список доступных коллекций и модулей.
+*   [Ansible for Windows Guide](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) — Специфика автоматизации Windows-систем.
+*   [Ansible Vault Guide](https://docs.ansible.com/ansible/latest/user_guide/vault.html) — Углубленное изучение работы с секретами и шифрованием.
