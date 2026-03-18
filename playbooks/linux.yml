@@ -1,0 +1,19 @@
+---
+- name: Конфигурация Linux-серверов (модульный подход)
+  hosts: lin_servers
+  become: yes
+  tasks:
+    - name: "1. Состояние программных пакетов"
+      include_tasks: tasks/linux/install.yml
+
+    - name: "2. Применение конфигурационных файлов"
+      include_tasks: tasks/linux/config.yml
+
+    - name: "3. Состояние учетных записей пользователей"
+      include_tasks: tasks/linux/user.yml
+
+    - name: "4. Статус системных служб"
+      include_tasks: tasks/linux/service.yml
+
+    - name: "5. Выполнение диагностических проверок"
+      include_tasks: tasks/linux/commands.yml

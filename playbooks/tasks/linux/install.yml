@@ -1,0 +1,10 @@
+- name: "[Linux] Состояние сетевых утилит и инструментов мониторинга"
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: present
+    update_cache: yes
+  loop:
+    - { name: "speedtest-cli", description: "Инструмент проверки скорости сети" }
+    - { name: "htop", description: "Инструмент мониторинга процессов" }
+    - { name: "curl", description: "Утилита для передачи данных" }
+

@@ -1,0 +1,21 @@
+---
+- name: Конфигурация Windows-серверов (модульный подход)
+  hosts: win_servers
+  tasks:
+    - name: "1. Состояние системных компонентов (Windows Features)"
+      include_tasks: tasks/windows/feature.yml
+
+    - name: "2. Состояние стороннего ПО (Chocolatey)"
+      include_tasks: tasks/windows/install.yml
+
+    - name: "3. Применение конфигурационных файлов"
+      include_tasks: tasks/windows/config.yml
+
+    - name: "4. Состояние учетных записей пользователей"
+      include_tasks: tasks/windows/user.yml
+
+    - name: "5. Статус системных служб"
+      include_tasks: tasks/windows/service.yml
+
+    - name: "6. Выполнение диагностических проверок"
+      include_tasks: tasks/windows/commands.yml

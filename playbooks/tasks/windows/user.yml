@@ -1,0 +1,7 @@
+- name: "[Windows] Состояние учетной записи win-admin (WIN_USER)"
+  ansible.windows.win_user:
+    name: win-admin
+    description: "Пользователь для управления Windows"
+    password: "{{ vault_user_password }}"
+    state: present
+

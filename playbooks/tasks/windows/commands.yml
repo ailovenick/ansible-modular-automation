@@ -1,0 +1,20 @@
+- name: "[Windows] Получение системных данных (PowerShell)"
+  ansible.windows.win_shell: "{{ item.cmd }}"
+  loop:
+    - { cmd: "Get-Date", desc: "Текущее время системы" }
+    - { cmd: "whoami", desc: "Контекст выполнения" }
+    - { cmd: "Get-Service | Where-Object {$_.Status -eq 'Running'} | Select-Object -First 5 Name, DisplayName", desc: "Топ-5 активных служб" }
+  register: win_cmd_results
+
+- name: "[Windows] Вывод данных PowerShell"
+  ansible.builtin.debug:
+    msg: "{{ item.item.desc }}: {{ item.stdout_lines }}"
+  loop: "{{ win_cmd_results.results }}"
+
+- name: "[Windows] Получение имени узла (CMD)"
+  ansible.windows.win_command: "hostname"
+  register: win_hostname
+
+- name: "[Windows] Отображение имени компьютера"
+  ansible.builtin.debug:
+    msg: "Имя узла: {{ win_hostname.stdout | trim }}"

@@ -1,0 +1,12 @@
+---
+# Конфиденциальные переменные проекта
+# Процедура шифрования: ansible-vault encrypt group_vars/all/vault.yml
+
+# Пароль для административного подключения (SSH/WinRM)
+vault_ansible_password: "123456"
+
+# Пароль для повышения привилегий (sudo)
+vault_ansible_become_password: "123456"
+
+# Пароль для создаваемых учетных записей пользователей
+vault_user_password: "123456"

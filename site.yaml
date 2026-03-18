@@ -1,0 +1,8 @@
+---
+# site.yaml - Главный агрегатор конфигурации инфраструктуры
+
+- name: Конфигурация Linux-серверов
+  import_playbook: playbooks/linux.yml
+
+- name: Конфигурация Windows-серверов
+  import_playbook: playbooks/windows.yml
