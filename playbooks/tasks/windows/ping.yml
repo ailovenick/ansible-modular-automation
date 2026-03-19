@@ -4,4 +4,4 @@
 
 - name: "[Windows] Статус доступности Windows-сервера"
   ansible.builtin.debug:
-    msg: "Сервер доступен через WinRM: {{ win_ping_result.win_ping }}"
+    msg: "Сервер доступен через WinRM: {{ win_ping_result.ping }}"
