@@ -44,7 +44,7 @@ pip install ansible pywinrm
 Порядок работы с зашифрованными данными описан в [Руководстве по Vault](docs/VAULT_GUIDE.md).
 Шифрование файла секретов:
 ```bash
-ansible-vault encrypt group_vars/all/vault.yml
+ansible-vault encrypt inventories/group_vars/all/vault.yml
 ```
 
 ### 3. Исполнение сценариев

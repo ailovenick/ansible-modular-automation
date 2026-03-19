@@ -5,18 +5,18 @@
 ## 1. Процедура шифрования данных
 Шифрование файла в корне проекта:
 ```bash
-ansible-vault encrypt group_vars/all/vault.yml
+ansible-vault encrypt inventories/group_vars/all/vault.yml
 ```
 Требуется ввод **Vault Password** (мастер-пароль защиты).
 
 ## 2. Редактирование защищенных данных
 Изменение значений переменных в зашифрованном файле:
 ```bash
-ansible-vault edit group_vars/all/vault.yml
+ansible-vault edit inventories/group_vars/all/vault.yml
 ```
 Снятие мастер пароля:
 ```bash
-ansible-vault decrypt group_vars/all/vault.yml
+ansible-vault decrypt inventories/group_vars/all/vault.yml
 ```
 
 ## 3. Исполнение сценариев с зашифрованными данными
