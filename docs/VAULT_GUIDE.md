@@ -14,6 +14,10 @@ ansible-vault encrypt group_vars/all/vault.yml
 ```bash
 ansible-vault edit group_vars/all/vault.yml
 ```
+Снятие мастер пароля:
+```bash
+ansible-vault decrypt group_vars/all/vault.yml
+```
 
 ## 3. Исполнение сценариев с зашифрованными данными
 Порядок запуска плейбуков с использованием флага `--ask-vault-pass`:
