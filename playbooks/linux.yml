@@ -3,6 +3,9 @@
   hosts: lin_servers
   become: yes
   tasks:
+    - name: "0. Проверка доступности (Connectivity)"
+      include_tasks: tasks/linux/ping.yml
+
     - name: "1. Состояние программных пакетов"
       include_tasks: tasks/linux/install.yml
 

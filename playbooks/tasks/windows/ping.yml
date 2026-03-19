@@ -1,0 +1,7 @@
+- name: "[Windows] Проверка связности WinRM (WIN_PING)"
+  ansible.windows.win_ping:
+  register: win_ping_result
+
+- name: "[Windows] Статус доступности Windows-сервера"
+  ansible.builtin.debug:
+    msg: "Сервер доступен через WinRM: {{ win_ping_result.win_ping }}"

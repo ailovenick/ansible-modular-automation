@@ -2,6 +2,9 @@
 - name: Конфигурация Windows-серверов (модульный подход)
   hosts: win_servers
   tasks:
+    - name: "0. Проверка доступности (Connectivity)"
+      include_tasks: tasks/windows/ping.yml
+
     - name: "1. Состояние системных компонентов (Windows Features)"
       include_tasks: tasks/windows/feature.yml
 

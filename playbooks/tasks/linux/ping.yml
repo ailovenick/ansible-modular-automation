@@ -1,0 +1,7 @@
+- name: "[Linux] Проверка связности Ansible (PING)"
+  ansible.builtin.ping:
+  register: linux_ping_result
+
+- name: "[Linux] Статус доступности сервера"
+  ansible.builtin.debug:
+    msg: "Сервер доступен через Ansible: {{ linux_ping_result.ping }}"
