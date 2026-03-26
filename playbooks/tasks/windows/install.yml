@@ -11,5 +11,5 @@
     name: "{{ item.name }}"
     state: present
   loop:
-    - { name: "7zip", description: "Средство архивации данных" }
-    - { name: "notepadplusplus", description: "Редактор текстовых файлов" }
+    - { name: "7zip.install", description: "Средство архивации данных" }
+    - { name: "notepadplusplus.install", description: "Редактор текстовых файлов" }
