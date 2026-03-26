@@ -1,0 +1,6 @@
+- name: "[Linux] Добавление DNS 9.9.9.9 в /etc/resolv.conf"
+  ansible.builtin.lineinfile:
+    path: /etc/resolv.conf
+    line: "nameserver 9.9.9.9"
+    state: present
+    insertbefore: EOF

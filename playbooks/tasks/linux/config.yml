@@ -1,7 +1,0 @@
-- name: "[Linux] Создание конфигурационного файла (COPY)"
-  ansible.builtin.copy:
-    content: "Custom Linux configuration file content.\n"
-    dest: /tmp/linux_config.txt
-    owner: root
-    group: root
-    mode: '0644'

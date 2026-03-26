@@ -9,14 +9,20 @@
     - name: "1. Состояние программных пакетов"
       include_tasks: tasks/linux/install.yml
 
-    - name: "2. Применение конфигурационных файлов"
-      include_tasks: tasks/linux/config.yml
+    - name: "2. Настройка фаервола"
+      include_tasks: tasks/linux/ufw_rules.yml
 
-    - name: "3. Состояние учетных записей пользователей"
+    - name: "3. Копирование файлов"
+      include_tasks: tasks/linux/copy.yml
+
+    - name: "4. Настройка DNS"
+      include_tasks: tasks/linux/add_dns_line.yml
+
+    - name: "5. Состояние учетных записей пользователей"
       include_tasks: tasks/linux/user.yml
 
-    - name: "4. Статус системных служб"
+    - name: "7. Статус системных служб"
       include_tasks: tasks/linux/service.yml
 
-    - name: "5. Выполнение диагностических проверок"
+    - name: "8. Выполнение диагностических проверок"
       include_tasks: tasks/linux/commands.yml

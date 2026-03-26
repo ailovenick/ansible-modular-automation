@@ -1,0 +1,7 @@
+- name: "[Linux] Копирование файла конфигурации с контроллера"
+  ansible.builtin.copy:
+    src: files/server.conf
+    dest: /etc/server.conf
+    owner: root
+    group: root
+    mode: '0644'

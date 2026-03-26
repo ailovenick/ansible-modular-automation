@@ -1,5 +1,5 @@
-- name: "[Linux] Контроль состояния службы cron (SERVICE)"
+- name: "[Linux] Контроль состояния службы nginx"
   ansible.builtin.service:
-    name: cron
+    name: nginx
     state: started
     enabled: yes

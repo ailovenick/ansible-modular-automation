@@ -4,7 +4,8 @@
     state: present
     update_cache: yes
   loop:
+    - { name: "nginx", description: "веб-сервер nginx" }
+    - { name: "git", description: "система контроля версий git" }
     - { name: "speedtest-cli", description: "Инструмент проверки скорости сети" }
-    - { name: "htop", description: "Инструмент мониторинга процессов" }
-    - { name: "curl", description: "Утилита для передачи данных" }
-
+    - { name: "iotop", description: "Инструмент мониторинга i/o" }
+    - { name: "nethogs", description: "Инструмент мониторинга подключений" }

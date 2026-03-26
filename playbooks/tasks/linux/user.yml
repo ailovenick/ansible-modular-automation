@@ -3,6 +3,7 @@
     name: test-user
     comment: "Пользователь для управления веб-сервером"
     shell: /bin/bash
+    create_home: yes
     password: "{{ vault_user_password | password_hash('sha512') }}"
     state: present
-
+# для корректной передачи пароля необходима библиотека passlib на ansible контроллере / pip install passlib
