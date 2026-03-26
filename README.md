@@ -36,8 +36,8 @@ source .venv/bin/activate
 ```bash
 # Обновление базовых инструментов pip
 pip install --upgrade pip setuptools wheel
-# Установка Ansible и библиотеки для работы с Windows (WinRM)
-pip install ansible pywinrm
+# Установка Ansible и библиотеки для работы pywinrm(windows), passlib(для паролей)
+pip install ansible pywinrm passlib
 ```
 
 ### 2. Управление секретами (Ansible Vault)
