@@ -1,6 +1,6 @@
-- name: "[Linux] Состояние учетной записи web-admin (USER)"
+- name: "[Linux] Состояние учетной записи test-user"
   ansible.builtin.user:
-    name: web-admin
+    name: test-user
     comment: "Пользователь для управления веб-сервером"
     shell: /bin/bash
     password: "{{ vault_user_password | password_hash('sha512') }}"
