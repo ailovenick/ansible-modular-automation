@@ -5,14 +5,14 @@
     - name: "0. Проверка доступности (Connectivity)"
       include_tasks: tasks/windows/ping.yml
 
-    - name: "1. Состояние системных компонентов (Windows Features)"
-      include_tasks: tasks/windows/feature.yml
-
-    - name: "2. Состояние стороннего ПО (Chocolatey)"
+    - name: "1. Состояние стороннего ПО (Chocolatey)"
       include_tasks: tasks/windows/install.yml
 
-    - name: "3. Применение конфигурационных файлов"
-      include_tasks: tasks/windows/config.yml
+    - name: "2. Применение конфигурационных файлов"
+      include_tasks: tasks/windows/copy.yml
+
+    - name: "3. Настройка сетевого экрана (Firewall)"
+      include_tasks: tasks/windows/firewall.yml
 
     - name: "4. Состояние учетных записей пользователей"
       include_tasks: tasks/windows/user.yml

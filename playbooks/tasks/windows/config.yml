@@ -1,4 +1,0 @@
-- name: "[Windows] Состояние конфигурационного файла (WIN_COPY)"
-  ansible.windows.win_copy:
-    content: "Custom Windows configuration file content.\n"
-    dest: C:\win_config.txt

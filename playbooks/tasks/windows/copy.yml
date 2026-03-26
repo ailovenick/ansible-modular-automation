@@ -1,0 +1,4 @@
+- name: "[Windows] Копирование конфигурационного файла (WIN_COPY)"
+  ansible.windows.win_copy:
+    src: files/server.conf
+    dest: C:\server.conf

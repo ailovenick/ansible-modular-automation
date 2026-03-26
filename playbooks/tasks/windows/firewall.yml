@@ -1,0 +1,9 @@
+- name: "[Windows] Разрешение RDP в фаерволе (WIN_FIREWALL_RULE)"
+  community.windows.win_firewall_rule:
+    name: Remote Desktop
+    localport: 3389
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes
