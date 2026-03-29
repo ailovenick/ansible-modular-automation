@@ -18,7 +18,8 @@
 ├── ansible.cfg             # Конфигурация Ansible
 ├── roles/                  # Директория ролей (логика состояний)
 │   ├── linux_common/       # Роль для базовой настройки Linux
-│   └── windows_common/     # Роль для базовой настройки Windows
+│   ├── windows_common/     # Роль для базовой настройки Windows
+│   └── new_role_name/      # Шаблон новой роли (пустая заготовка)
 ├── playbooks/              # Сценарии вызова ролей
 │   ├── linux.yml           # Применение ролей для Linux-серверов
 │   └── windows.yml         # Применение ролей для Windows-серверов
