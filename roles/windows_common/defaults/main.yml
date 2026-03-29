@@ -2,6 +2,9 @@
 ---
 # defaults file for roles/windows_common
 
+# Желаемое состояние инфраструктуры (present или absent)
+infra_state: "present"
+
 # Состояние пакетов Chocolatey (установлено)
 windows_packages:
   - { name: "7zip.install", description: "Средство архивации данных" }

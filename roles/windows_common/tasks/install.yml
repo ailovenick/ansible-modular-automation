@@ -9,5 +9,5 @@
 - name: "[Windows] Состояние прикладного ПО (Chocolatey)"
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ item.name }}"
-    state: present
+    state: "{{ infra_state }}"
   loop: "{{ windows_packages }}"

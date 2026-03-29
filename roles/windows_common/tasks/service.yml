@@ -1,4 +1,5 @@
 - name: "[Windows] Статус службы Spooler (WIN_SERVICE)"
   ansible.windows.win_service:
     name: Spooler
-    state: restarted
+    state: "{{ (infra_state == 'absent') | ternary('stopped', 'started') }}"
+    start_mode: "{{ (infra_state == 'absent') | ternary('manual', 'auto') }}"
