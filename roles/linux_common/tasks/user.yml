@@ -5,5 +5,5 @@
     shell: "{{ linux_user_shell }}"
     create_home: yes
     password: "{{ vault_user_password | password_hash('sha512') }}"
-    state: present
+    state: "{{ infra_state }}"
 # для корректной передачи пароля необходима библиотека passlib на ansible контроллере / pip install passlib

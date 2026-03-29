@@ -1,5 +1,5 @@
 - name: "[Linux] Контроль состояния службы nginx"
   ansible.builtin.service:
     name: nginx
-    state: started
-    enabled: yes
+    state: "{{ (infra_state == 'absent') | ternary('stopped', 'started') }}"
+    enabled: "{{ (infra_state == 'absent') | ternary('no', 'yes') }}"

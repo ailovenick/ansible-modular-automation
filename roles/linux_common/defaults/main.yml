@@ -2,6 +2,9 @@
 ---
 # defaults file for roles/linux_common
 
+# Желаемое состояние инфраструктуры (present или absent)
+infra_state: "present"
+
 # Список пакетов, состояние которых должно быть "present" (установлено)
 linux_packages:
   - { name: "nginx", description: "веб-сервер nginx" }
