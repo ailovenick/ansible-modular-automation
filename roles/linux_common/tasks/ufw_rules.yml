@@ -1,18 +1,18 @@
 - name: "[Linux] Установка фаервола (UFW)"
   ansible.builtin.apt:
     name: ufw
-    state: "{{ infra_state }}"
+    state: present
 
 - name: "[Linux] Открытие портов HTTP (80) и HTTPS (443) в фаерволе (UFW)"
   community.general.ufw:
-    rule: "{{ (infra_state == 'absent') | ternary('delete', 'allow') }}"
+    rule: allow
     port: "{{ item }}"
     proto: tcp
+    delete: "{{ (infra_state == 'absent') | ternary('yes', 'no') }}"
   loop:
     - 22
     - 80
     - 443
-  when: infra_state == 'present' or infra_state == 'absent'
 
 - name: "[Linux] Включение фаервола и установка политики по умолчанию"
   community.general.ufw:
