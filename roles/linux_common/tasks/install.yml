@@ -1,0 +1,6 @@
+- name: "[Linux] Состояние сетевых утилит и инструментов мониторинга"
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: present
+    update_cache: yes
+  loop: "{{ linux_packages }}"

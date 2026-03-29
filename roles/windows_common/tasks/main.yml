@@ -1,0 +1,14 @@
+---
+# roles/windows_common/tasks/main.yml
+# Задачи для базовой настройки Windows
+
+- name: "[Windows] Подключение модульных задач"
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    - ping.yml
+    - install.yml
+    - firewall.yml
+    - copy.yml
+    - user.yml
+    - service.yml
+    - commands.yml

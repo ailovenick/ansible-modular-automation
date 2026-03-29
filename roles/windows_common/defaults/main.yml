@@ -1,0 +1,9 @@
+---
+# roles/windows_common/defaults/main.yml
+# Переменные по умолчанию для windows_common
+
+windows_packages:
+  - { name: "7zip.install", description: "Средство архивации данных" }
+  - { name: "notepadplusplus.install", description: "Редактор текстовых файлов" }
+
+windows_user_name: "test-user-win"

@@ -1,8 +1,8 @@
-- name: "[Linux] Состояние учетной записи test-user"
+- name: "[Linux] Состояние учетной записи {{ linux_user_name }}"
   ansible.builtin.user:
-    name: test-user
+    name: "{{ linux_user_name }}"
     comment: "Пользователь для управления веб-сервером"
-    shell: /bin/bash
+    shell: "{{ linux_user_shell }}"
     create_home: yes
     password: "{{ vault_user_password | password_hash('sha512') }}"
     state: present

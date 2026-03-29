@@ -1,13 +1,12 @@
 # ansible-modular-automation
 
-
 Наглядный пример архитектуры проекта Ansible для одновременного выполнения плейбуков на хостах с разными операционными системами (Linux и Windows).
 
 ## 🌿 Версионирование и Архитектура (Ветви)
 
 Данный репозиторий демонстрирует два подхода к организации Ansible-кода, разделенные по веткам:
 
-> ### 📍 **Текущая архитектура (Ветка):** `tasks`
+> ### 📍 **Текущая архитектура (Ветка):** `roles`
 *   **`tasks`**: Линейная модульная архитектура на основе `include_tasks`. Отлично подходит для простых проектов, где важна прозрачность и чтение "сверху-вниз".
 *   **`roles`**: Продвинутая архитектура на базе **Ansible Roles**. Соответствует (Best Practices) и предназначена для масштабируемых, переиспользуемых инфраструктур.
 
@@ -17,12 +16,12 @@
 .
 ├── site.yaml               # Главная точка входа (агрегатор плейбуков)
 ├── ansible.cfg             # Конфигурация Ansible
-├── playbooks/              # Сценарии и логика состояний
-│   ├── linux.yml           # Состояние для Linux-серверов
-│   ├── windows.yml         # Состояние для Windows-серверов
-│   └── tasks/              # Модульные компоненты (Tasks)
-│       ├── linux/          # Задачи для Linux (ufw, apt, dns...)
-│       └── windows/        # Задачи для Windows (firewall, chocolatey...)
+├── roles/                  # Директория ролей (логика состояний)
+│   ├── linux_common/       # Роль для базовой настройки Linux
+│   └── windows_common/     # Роль для базовой настройки Windows
+├── playbooks/              # Сценарии вызова ролей
+│   ├── linux.yml           # Применение ролей для Linux-серверов
+│   └── windows.yml         # Применение ролей для Windows-серверов
 ├── inventories/            # Реестры целевых узлов
 │   └── group_vars/all/     # Глобальные переменные и секреты (vault)
 └── docs/                   # Справочная документация
@@ -31,12 +30,11 @@
 ## 🚀 Порядок развертывания
 
 ### 1. Подготовка локальной среды (Python VENV)
-Для корректной работы Ansible и его модулей рекомендуется использовать изолированное виртуальное окружение:
+Для корректной работы Ansible рекомендуется использовать изолированное виртуальное окружение:
 
-**Обновление системы и системных зависимостей (Debian/Ubuntu):**
+**Обновление системы и зависимостей (Debian/Ubuntu):**
 ```bash
 sudo apt update && sudo apt upgrade -y
-# Установка необходимых компонентов сборки (если возникают ошибки компиляции)
 sudo apt install -y build-essential libssl-dev libffi-dev python3-dev 
 ```
 
@@ -46,22 +44,38 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-**Установка Ansible и дополнительных библиотек:**
+**Установка Ansible и необходимых библиотек:**
 ```bash
-# Обновление базовых инструментов pip
 pip install --upgrade pip setuptools wheel
-# Установка Ansible и библиотеки для работы pywinrm(windows), passlib(для паролей)
 pip install ansible pywinrm passlib
 ```
 
-### 2. Управление секретами (Ansible Vault)
+### 2. Инициализация и установка ролей
+Для расширения функционала можно использовать готовые роли из сообщества (Ansible Galaxy) или создавать свои.
+
+**Создание новой локальной роли:**
+```bash
+# Инициализация структуры папок для новой роли
+ansible-galaxy role init roles/new_role_name
+```
+
+**Установка сторонней роли:**
+```bash
+# Установка готовой роли в директорию roles/
+ansible-galaxy role install geerlingguy.nginx -p roles/
+```
+
+**Где хранятся роли:**
+*   **`roles/`**: Место для локальных ролей (`linux_common`, `windows_common`) и загруженных сторонних ролей.
+
+### 3. Управление секретами (Ansible Vault)
 Порядок работы с зашифрованными данными описан в [Руководстве по Vault](docs/VAULT_GUIDE.md).
 Шифрование файла секретов:
 ```bash
 ansible-vault encrypt inventories/group_vars/all/vault.yml
 ```
 
-### 3. Исполнение сценариев
+### 4. Исполнение сценариев
 ```bash
 # Проверка доступности узлов
 ansible all -m ping --ask-vault-pass
@@ -78,8 +92,6 @@ ansible-playbook site.yaml --ask-vault-pass
 *   [Методология защиты данных (Vault)](docs/VAULT_GUIDE.md)
 
 ## 🔗 Официальные ресурсы Ansible
-Внешние источники для глубокого изучения и поиска модулей:
-*   [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html) — Основной портал документации.
-*   [Ansible Module Index](https://docs.ansible.com/ansible/latest/collections/index.html) — Полный список доступных коллекций и модулей.
-*   [Ansible for Windows Guide](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) — Специфика автоматизации Windows-систем.
-*   [Ansible Vault Guide](https://docs.ansible.com/ansible/latest/user_guide/vault.html) — Углубленное изучение работы с секретами и шифрованием.
+*   [Ansible Roles Guide](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) — Официальное руководство по ролям.
+*   [Ansible Galaxy](https://galaxy.ansible.com/) — Хаб готовых ролей сообщества.
+*   [Ansible for Windows Guide](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) — Специфика автоматизации Windows.

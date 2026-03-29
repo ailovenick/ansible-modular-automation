@@ -1,0 +1,14 @@
+galaxy_info:
+  author: your_name
+  description: Base configuration for Windows servers
+  company: your_company
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Windows
+      versions:
+        - all
+  categories:
+    - system
+
+dependencies: []

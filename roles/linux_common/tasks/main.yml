@@ -1,0 +1,15 @@
+---
+# roles/linux_common/tasks/main.yml
+# Задачи для базовой настройки Linux
+
+- name: "[Linux] Подключение модульных задач"
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    - ping.yml
+    - install.yml
+    - ufw_rules.yml
+    - copy.yml
+    - add_dns_line.yml
+    - user.yml
+    - service.yml
+    - commands.yml

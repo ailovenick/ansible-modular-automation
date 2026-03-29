@@ -1,24 +1,5 @@
 ---
-- name: Конфигурация Windows-серверов (модульный подход)
+- name: Конфигурация Windows-серверов (на базе ролей)
   hosts: win_servers
-  tasks:
-    - name: "0. Проверка доступности (Connectivity)"
-      include_tasks: tasks/windows/ping.yml
-
-    - name: "1. Состояние стороннего ПО (Chocolatey)"
-      include_tasks: tasks/windows/install.yml
-
-    - name: "2. Применение конфигурационных файлов"
-      include_tasks: tasks/windows/copy.yml
-
-    - name: "3. Настройка сетевого экрана (Firewall)"
-      include_tasks: tasks/windows/firewall.yml
-
-    - name: "4. Состояние учетных записей пользователей"
-      include_tasks: tasks/windows/user.yml
-
-    - name: "5. Статус системных служб"
-      include_tasks: tasks/windows/service.yml
-
-    - name: "6. Выполнение диагностических проверок"
-      include_tasks: tasks/windows/commands.yml
+  roles:
+    - role: windows_common

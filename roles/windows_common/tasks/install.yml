@@ -10,6 +10,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ item.name }}"
     state: present
-  loop:
-    - { name: "7zip.install", description: "Средство архивации данных" }
-    - { name: "notepadplusplus.install", description: "Редактор текстовых файлов" }
+  loop: "{{ windows_packages }}"
