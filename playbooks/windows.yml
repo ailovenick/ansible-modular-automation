@@ -1,5 +1,5 @@
 ---
 - name: Конфигурация Windows-серверов (на базе ролей)
-  hosts: win_servers
+  hosts: "{{ target | default('win_servers') }}"
   roles:
     - role: windows_common

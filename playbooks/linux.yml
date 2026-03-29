@@ -1,6 +1,6 @@
 ---
 - name: Конфигурация Linux-серверов (на базе ролей)
-  hosts: lin_servers
+  hosts: "{{ target | default('lin_servers') }}"
   become: yes
   roles:
     - role: linux_common
