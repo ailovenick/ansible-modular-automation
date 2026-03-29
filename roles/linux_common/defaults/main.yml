@@ -1,8 +1,8 @@
+#SPDX-License-Identifier: MIT-0
 ---
-# roles/linux_common/defaults/main.yml
-# Переменные по умолчанию для linux_common
-# Могут быть переопределены в инвентаре или в плейбуке
+# defaults file for roles/linux_common
 
+# Список пакетов, состояние которых должно быть "present" (установлено)
 linux_packages:
   - { name: "nginx", description: "веб-сервер nginx" }
   - { name: "git", description: "система контроля версий git" }
@@ -10,5 +10,10 @@ linux_packages:
   - { name: "iotop", description: "Инструмент мониторинга i/o" }
   - { name: "nethogs", description: "Инструмент мониторинга подключений" }
 
+# Параметры учетной записи пользователя
 linux_user_name: "test-user"
 linux_user_shell: "/bin/bash"
+
+# Пути к файлам конфигурации
+linux_config_src: "server.conf"
+linux_config_dest: "/etc/server.conf"

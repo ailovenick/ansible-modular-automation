@@ -1,14 +1,24 @@
+#SPDX-License-Identifier: MIT-0
 ---
-# roles/windows_common/tasks/main.yml
-# Задачи для базовой настройки Windows
+# tasks file for roles/windows_common
 
-- name: "[Windows] Подключение модульных задач"
-  ansible.builtin.include_tasks: "{{ item }}"
-  loop:
-    - ping.yml
-    - install.yml
-    - firewall.yml
-    - copy.yml
-    - user.yml
-    - service.yml
-    - commands.yml
+- name: "[Windows] Состояние доступности узла (WIN_PING)"
+  ansible.builtin.include_tasks: ping.yml
+
+- name: "[Windows] Состояние менеджера пакетов Chocolatey (WIN_SHELL)"
+  ansible.builtin.include_tasks: install.yml
+
+- name: "[Windows] Состояние правил брандмауэра (WIN_FIREWALL_RULE)"
+  ansible.builtin.include_tasks: firewall.yml
+
+- name: "[Windows] Состояние файлов на диске (WIN_COPY)"
+  ansible.builtin.include_tasks: copy.yml
+
+- name: "[Windows] Состояние учетных записей (WIN_USER)"
+  ansible.builtin.include_tasks: user.yml
+
+- name: "[Windows] Состояние системных служб (WIN_SERVICE)"
+  ansible.builtin.include_tasks: service.yml
+
+- name: "[Windows] Состояние диагностических команд (WIN_SHELL)"
+  ansible.builtin.include_tasks: commands.yml

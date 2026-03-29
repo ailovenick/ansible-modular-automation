@@ -1,9 +1,16 @@
+#SPDX-License-Identifier: MIT-0
 ---
-# roles/windows_common/defaults/main.yml
-# Переменные по умолчанию для windows_common
+# defaults file for roles/windows_common
 
+# Состояние пакетов Chocolatey (установлено)
 windows_packages:
   - { name: "7zip.install", description: "Средство архивации данных" }
   - { name: "notepadplusplus.install", description: "Редактор текстовых файлов" }
 
-windows_user_name: "test-user-win"
+# Параметры учетных записей Windows
+windows_user_name: "test-user"
+windows_user_comment: "Пользователь для управления Win-сервером"
+
+# Пути к файлам конфигурации
+windows_config_src: "server.conf"
+windows_config_dest: 'C:\server.conf'

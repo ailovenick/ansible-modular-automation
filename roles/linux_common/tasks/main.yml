@@ -1,15 +1,27 @@
+#SPDX-License-Identifier: MIT-0
 ---
-# roles/linux_common/tasks/main.yml
-# Задачи для базовой настройки Linux
+# tasks file for roles/linux_common
 
-- name: "[Linux] Подключение модульных задач"
-  ansible.builtin.include_tasks: "{{ item }}"
-  loop:
-    - ping.yml
-    - install.yml
-    - ufw_rules.yml
-    - copy.yml
-    - add_dns_line.yml
-    - user.yml
-    - service.yml
-    - commands.yml
+- name: "[Linux] Состояние сетевых подключений (PING)"
+  ansible.builtin.include_tasks: ping.yml
+
+- name: "[Linux] Состояние программных пакетов (APT)"
+  ansible.builtin.include_tasks: install.yml
+
+- name: "[Linux] Состояние правил фаервола (UFW)"
+  ansible.builtin.include_tasks: ufw_rules.yml
+
+- name: "[Linux] Состояние конфигурационных файлов (COPY)"
+  ansible.builtin.include_tasks: copy.yml
+
+- name: "[Linux] Состояние настроек DNS (LINEINFILE)"
+  ansible.builtin.include_tasks: add_dns_line.yml
+
+- name: "[Linux] Состояние учетных записей пользователей (USER)"
+  ansible.builtin.include_tasks: user.yml
+
+- name: "[Linux] Состояние системных служб (SERVICE)"
+  ansible.builtin.include_tasks: service.yml
+
+- name: "[Linux] Состояние диагностических проверок (COMMAND)"
+  ansible.builtin.include_tasks: commands.yml
