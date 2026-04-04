@@ -17,15 +17,14 @@
 
 ```text
 .
-├── site.yaml               # Главный агрегатор (запуск всей инфраструктуры)
-├── ansible.cfg             # Глобальные настройки Ansible
-├── .ansible-lint           # Конфигурация стандартов качества кода
-├── .github/workflows/      # Автоматизация (GitHub Actions)
-│   └── ansible-lint.yml    # Сценарий автоматической проверки качества (CI)
-├── collections/            # Зависимости проекта
-│   └── requirements.yml    # Список необходимых внешних коллекций Ansible
-├── playbooks/              # Сценарии вызова
-
+├── site.yaml                 # Главный агрегатор (запуск всей инфраструктуры)
+├── ansible.cfg               # Глобальные настройки Ansible
+├── .ansible-lint             # Конфигурация стандартов качества кода
+├── .github/workflows/        # Автоматизация (GitHub Actions)
+│   └── ansible-lint.yml      # Сценарий автоматической проверки качества (CI)
+├── collections/              # Зависимости проекта
+│   └── requirements.yml      # Список необходимых внешних коллекций Ansible
+├── playbooks/                # Сценарии вызова
 │   ├── linux.yml             # Полная роль для Linux
 │   ├── windows.yml           # Полная роль для Windows
 │   ├── linux_selective.yml   # ВЫБОРОЧНЫЕ задачи для Linux (конструктор)
