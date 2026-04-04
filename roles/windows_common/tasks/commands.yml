@@ -1,5 +1,7 @@
-- name: "[Windows] Получение системных данных (PowerShell)"
+- name: "[Windows] Получение системных данных (PowerShell 7)"
   ansible.windows.win_shell: Get-Uptime
+  args:
+    executable: pwsh
   register: win_cmd_results
   changed_when: false
 

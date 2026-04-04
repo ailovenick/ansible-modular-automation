@@ -6,6 +6,11 @@
   args:
     creates: C:\ProgramData\chocolatey\bin\choco.exe
 
+- name: "[Windows] Установка или обновление PowerShell 7 до последней версии"
+  chocolatey.chocolatey.win_chocolatey:
+    name: powershell-core
+    state: latest
+
 - name: "[Windows] Состояние прикладного ПО (Chocolatey)"
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ item.name }}"
