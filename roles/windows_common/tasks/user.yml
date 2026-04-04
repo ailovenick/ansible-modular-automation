@@ -2,6 +2,8 @@
 - name: "[Windows] Состояние учетных записей (WIN_USER)"
   ansible.windows.win_user:
     name: "{{ windows_user_name }}"
-    comment: "{{ windows_user_comment }}"
+    description: "{{ windows_user_description }}"
+    # В Windows пароль передается в открытом виде, так как WinRM обеспечивает 
+    # шифрование всего канала связи (в отличие от Linux, где нужен хеш).
     password: "{{ vault_user_password }}"
     state: "{{ infra_state }}"

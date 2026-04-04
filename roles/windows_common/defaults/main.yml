@@ -10,7 +10,7 @@ windows_packages:
 
 # Параметры учетных записей Windows
 windows_user_name: "test-user"
-windows_user_comment: "Пользователь для управления Win-сервером"
+windows_user_description: "Пользователь для управления Win-сервером"
 
 # Пути к файлам конфигурации
 windows_config_src: "../files/server.conf"
