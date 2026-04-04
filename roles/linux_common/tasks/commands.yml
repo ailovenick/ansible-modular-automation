@@ -5,12 +5,10 @@
 
 - name: "[Linux] Вывод данных о системном аптайме (uptime)"
   ansible.builtin.debug:
-    var: linux_cmd_results.stdout
+    msg: "{{ linux_cmd_results.stdout_lines }}"
 
 - name: "[Linux] Сбор данных о памяти (SHELL)"
-  ansible.builtin.shell: |
-    set -o pipefail
-    free -m | grep Mem
+  ansible.builtin.shell: free -m
   args:
     executable: /bin/bash
   register: mem_info
@@ -18,4 +16,4 @@
 
 - name: "[Linux] Вывод данных о памяти (free -m)"
   ansible.builtin.debug:
-    var: mem_info.stdout
+    msg: "{{ mem_info.stdout_lines }}"

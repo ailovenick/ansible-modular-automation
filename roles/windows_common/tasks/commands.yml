@@ -1,5 +1,5 @@
 - name: "[Windows] Получение системных данных (PowerShell 7)"
-  ansible.windows.win_shell: Get-Uptime
+  ansible.windows.win_shell: Get-Uptime | Select-Object -Property Days, Hours, Minutes, Seconds
   args:
     executable: pwsh
   register: win_cmd_results
@@ -7,7 +7,7 @@
 
 - name: "[Windows] Вывод данных о системном аптайме (PowerShell 7)"
   ansible.builtin.debug:
-    var: win_cmd_results.stdout
+    msg: "{{ win_cmd_results.stdout_lines }}"
 
 - name: "[Windows] Получение имени узла (CMD)"
   ansible.windows.win_shell: hostname
@@ -16,4 +16,4 @@
 
 - name: "[Windows] Вывод имени узла (CMD)"
   ansible.builtin.debug:
-    var: win_hostname.stdout
+    msg: "{{ win_hostname.stdout_lines }}"
