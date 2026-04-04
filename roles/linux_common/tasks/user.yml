@@ -1,9 +1,7 @@
-- name: "[Linux] Состояние учетной записи {{ linux_user_name }}"
+---
+- name: "[Linux] Состояние учетных записей пользователей (USER)"
   ansible.builtin.user:
     name: "{{ linux_user_name }}"
-    comment: "Пользователь для управления веб-сервером"
     shell: "{{ linux_user_shell }}"
-    create_home: yes
-    password: "{{ vault_user_password | password_hash('sha512') }}"
+    password: "{{ vault_user_password }}"
     state: "{{ infra_state }}"
-# для корректной передачи пароля необходима библиотека passlib на ansible контроллере / pip install passlib

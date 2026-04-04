@@ -9,6 +9,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Исправленное название экшена
+      - name: Install Ansible Collections
+        run: |
+          ansible-galaxy collection install ansible.windows
+          ansible-galaxy collection install community.windows
+          ansible-galaxy collection install community.general
+          ansible-galaxy collection install chocolatey.chocolatey
+
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main

@@ -1,20 +1,13 @@
 - name: "[Linux] Сбор системных данных (COMMAND)"
-  ansible.builtin.command: "{{ item.cmd }}"
-  loop:
-    - { cmd: "hostname", desc: "Имя хоста" }
-    - { cmd: "uptime", desc: "Время работы системы" }
-    - { cmd: "df -h", desc: "Дисковое пространство" }
+  ansible.builtin.command: uptime
   register: linux_cmd_results
-
-- name: "[Linux] Вывод результатов сбора данных"
-  ansible.builtin.debug:
-    msg: "{{ item.item.desc }}: {{ item.stdout }}"
-  loop: "{{ linux_cmd_results.results }}"
+  changed_when: false
 
 - name: "[Linux] Сбор данных о памяти (SHELL)"
-  ansible.builtin.shell: "free -m | grep Mem"
+  ansible.builtin.shell: |
+    set -o pipefail
+    free -m | grep Mem
+  args:
+    executable: /bin/bash
   register: mem_info
-
-- name: "[Linux] Отображение информации о памяти"
-  ansible.builtin.debug:
-    msg: "Состояние памяти: {{ mem_info.stdout }}"
+  changed_when: false

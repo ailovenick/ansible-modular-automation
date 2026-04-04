@@ -1,7 +1,5 @@
-#SPDX-License-Identifier: MIT-0
----
 # tasks file for roles/windows_common
-
+---
 - name: "[Windows] Состояние доступности узла (WIN_PING)"
   ansible.builtin.include_tasks: ping.yml
 
@@ -22,12 +20,3 @@
 
 - name: "[Windows] Состояние диагностических команд (WIN_SHELL)"
   ansible.builtin.include_tasks: commands.yml
-
-# --- ПРИМЕР ИСПОЛЬЗОВАНИЯ ШАБЛОНОВ (Templates) ---
-# Модуль 'win_template' берет файл из 'templates/', 
-# подставляет в него переменные и копирует на сервер.
-#
-# - name: "[Windows] Генерация конфигурации из шаблона"
-#   ansible.windows.win_template:
-#     src: example_config.txt.j2
-#     dest: C:\example_config.txt

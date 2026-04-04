@@ -1,7 +1,7 @@
 ---
 - name: "[Выборочно] Настройка Linux-серверов"
   hosts: "{{ target | default('lin_servers') }}"
-  become: yes
+  become: true
 
   tasks:
     - name: "Загрузка переменных по умолчанию из роли linux_common"

@@ -1,4 +1,5 @@
 ---
-- hosts: localhost
+- name: "Test playbook for windows_common"
+  hosts: localhost
   roles:
     - windows_common

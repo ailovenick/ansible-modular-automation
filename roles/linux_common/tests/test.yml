@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: "Test playbook for linux_common"
+  hosts: localhost
   remote_user: root
   roles:
     - linux_common

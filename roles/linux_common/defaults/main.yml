@@ -1,7 +1,5 @@
-#SPDX-License-Identifier: MIT-0
----
 # defaults file for roles/linux_common
-
+---
 # Желаемое состояние инфраструктуры (present или absent)
 infra_state: "present"
 
