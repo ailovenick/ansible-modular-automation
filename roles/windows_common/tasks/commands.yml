@@ -5,7 +5,15 @@
   register: win_cmd_results
   changed_when: false
 
+- name: "[Windows] Вывод данных о системном аптайме (PowerShell 7)"
+  ansible.builtin.debug:
+    var: win_cmd_results.stdout
+
 - name: "[Windows] Получение имени узла (CMD)"
   ansible.windows.win_shell: hostname
   register: win_hostname
   changed_when: false
+
+- name: "[Windows] Вывод имени узла (CMD)"
+  ansible.builtin.debug:
+    var: win_hostname.stdout
