@@ -3,5 +3,7 @@
   ansible.builtin.user:
     name: "{{ linux_user_name }}"
     shell: "{{ linux_user_shell }}"
-    password: "{{ vault_user_password }}"
+    # Пароль обязательно должен быть захеширован (например, sha512)
+    # На контроллере обязательно должна быть библиотека passlib / pip install passlib
+    password: "{{ vault_user_password | password_hash('sha512') }}"
     state: "{{ infra_state }}"
