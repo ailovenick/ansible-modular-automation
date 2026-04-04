@@ -1,14 +1,6 @@
-# Конфигурация для прохождения CI
+# Полная конфигурация качества (Production Profile)
 skip_list:
-  - var-naming          # Разрешаем глобальную infra_state
-  - metadata            # Пропускаем сложные проверки метаданных роли
-  - role-name[path]     # Разрешает импорты по путям в тестах
-  - risky-shell-pipe    # Пропускаем, если пайпы уже настроены через pipefail
+  - var-naming          # Оставляем глобальную infra_state (архитектурное решение)
+  - role-name[path]     # Разрешаем импорты по путям в тестах
+  - risky-shell-pipe    # Пропускаем, так как pipefail настроен вручную
   - no-changed-when     # Разрешаем командам регистрации менять состояние
-  - yaml[comments]      # Игнорировать пробелы в комментариях (на всякий случай)
-
-exclude_paths:
-  - roles/windows_common/
-  - playbooks/windows.yml
-  - playbooks/windows_selective.yml
-  - site.yaml           # Исключаем главный файл, так как он импортирует Windows-плейбук
