@@ -1,35 +1,55 @@
+# ГЛАВНЫЙ ФАЙЛ CI (GitHub Actions)
+# Он описывает, как робот GitHub будет проверять ваш код на ошибки.
+
+# Название процесса (отображается в интерфейсе GitHub)
 name: Ansible Full Lint (Win/Lin)
 
-on: [push, pull_request]
+# ТРИГГЕРЫ: Когда запускать проверку?
+on: 
+  push:          # При каждой отправке кода (git push)
+  pull_request:  # При создании запроса на слияние веток
 
+# ГЛОБАЛЬНЫЕ НАСТРОЙКИ
 env:
+  # Используем Node.js 24, чтобы убрать предупреждения об устаревании
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+# СПИСОК РАБОТ
 jobs:
+  # Название работы (ID)
   lint:
+    # Тип операционной системы для виртуальной машины GitHub
     runs-on: ubuntu-latest
+    
+    # ПОШАГОВАЯ ИНСТРУКЦИЯ
     steps:
+      # ШАГ 1: Скачиваем ваш код из репозитория на виртуальную машину
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 1. Подготовка Python
+      # ШАГ 2: Устанавливаем Python (база для работы Ansible)
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
+          # Версия Python для стабильности тестов
           python-version: '3.12'
 
-      # 2. Установка Python-библиотек для работы с WinRM и Windows
+      # ШАГ 3: Устанавливаем Ansible, Линтер и драйверы для Windows
       - name: Install Python dependencies
         run: |
+          # Обновляем установщик pip
           pip install --upgrade pip
+          # Ставим сам Ansible, Линтер и поддержку WinRM для Windows
           pip install ansible-core ansible-lint pywinrm xmltodict
 
-      # 3. Установка коллекций из requirements.yml
+      # ШАГ 4: Устанавливаем коллекции (плагины) из файла требований
       - name: Install Ansible Collections
         run: |
+          # Скачиваем коллекции ansible.windows, chocolatey и др.
           ansible-galaxy collection install -r collections/requirements.yml
 
-      # 4. Финальный запуск линтера (теперь он видит ВСЕ модули)
+      # ШАГ 5: Запускаем финальную проверку качества кода
       - name: Run ansible-lint
         run: |
+          # Проверяем весь проект (.) на соответствие стандартам качества
           ansible-lint .

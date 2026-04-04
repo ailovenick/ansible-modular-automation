@@ -1,6 +1,7 @@
 ---
+# Список внешних зависимостей (коллекций) для работы с Linux и Windows
 collections:
-  - name: ansible.windows
-  - name: community.windows
-  - name: community.general
-  - name: chocolatey.chocolatey
+  - name: ansible.windows      # Базовые модули для Windows (win_service, win_user)
+  - name: community.windows    # Расширенные модули (win_firewall_rule)
+  - name: community.general    # Модули для Linux (ufw, apt)
+  - name: chocolatey.chocolatey # Менеджер пакетов для Windows

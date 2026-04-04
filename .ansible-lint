@@ -1,6 +1,27 @@
-# Полная конфигурация качества (Production Profile)
+# КОНФИГУРАЦИЯ ANSIBLE-LINT (ПРОФИЛЬ PRODUCTION)
+# Исключения обоснованы архитектурными особенностями проекта.
+
 skip_list:
-  - var-naming          # Оставляем глобальную infra_state (архитектурное решение)
-  - role-name[path]     # Разрешаем импорты по путям в тестах
-  - risky-shell-pipe    # Пропускаем, так как pipefail настроен вручную
-  - no-changed-when     # Разрешаем командам регистрации менять состояние
+  # 1. var-naming (Ошибка: "Variables names from within roles should use prefix")
+  # ПРИЧИНА ИСКЛЮЧЕНИЯ: Использование глобальной переменной 'infra_state' является 
+  # архитектурным требованием. Это обеспечивает единую точку управления жизненным 
+  # циклом для всех операционных систем (Linux и Windows) без дублирования кода.
+  - var-naming          
+
+  # 2. role-name[path] (Ошибка: "Avoid using paths when importing roles")
+  # ПРИЧИНА ИСКЛЮЧЕНИЯ: Реализация модульной архитектуры "роль как библиотека задач".
+  # Импорт через относительные пути (../roles/...) необходим для работы 
+  # выборочных сценариев (selective playbooks), собираемых из отдельных блоков.
+  - role-name[path]     
+
+  # 3. risky-shell-pipe (Ошибка: "Shells that use pipes should set the pipefail option")
+  # ПРИЧИНА ИСКЛЮЧЕНИЯ: Требование избыточно. Безопасная обработка ошибок 
+  # в цепочках команд реализована вручную через 'set -o pipefail' непосредственно 
+  # в коде соответствующих задач.
+  - risky-shell-pipe    
+
+  # 4. no-changed-when (Ошибка: "Commands should not change things if nothing needs doing")
+  # ПРИЧИНА ИСКЛЮЧЕНИЯ: Использование команд 'command/shell' для диагностики 
+  # (uptime, hostname, free) носит информационный характер. Сбор системных данных 
+  # не подразумевает изменение состояния целевого узла.
+  - no-changed-when     
