@@ -1,0 +1,24 @@
+---
+- name: "[Выборочно] Настройка Linux-серверов"
+  hosts: "{{ target | default('lin_servers') }}"
+  become: yes
+
+  tasks:
+    # Шаг 1: Подгрузка переменных роли
+    - name: "Загрузка переменных по умолчанию из роли linux_common"
+      ansible.builtin.include_vars:
+        file: ../roles/linux_common/defaults/main.yml
+
+    # Шаг 2: Выбор нужных задач
+    - name: "Блок 1: Проверка доступности (PING)"
+      ansible.builtin.include_tasks: ../roles/linux_common/tasks/ping.yml
+
+    - name: "Блок 2: Установка системных утилит (APT)"
+      ansible.builtin.include_tasks: ../roles/linux_common/tasks/install.yml
+
+    - name: "Блок 3: Настройка параметров DNS"
+      ansible.builtin.include_tasks: ../roles/linux_common/tasks/add_dns_line.yml
+
+    - name: "Информационное сообщение"
+      ansible.builtin.debug:
+        msg: "Выборочная настройка Linux завершена. Мы пропустили настройку пользователей и фаервола."
