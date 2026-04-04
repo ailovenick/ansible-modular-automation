@@ -1,5 +1,12 @@
-- name: "[Windows] Копирование конфигурационного файла (WIN_COPY)"
+- name: "[Windows] Состояние конфигурационного файла (WIN_COPY)"
   ansible.windows.win_copy:
     src: "{{ windows_config_src }}"
     dest: "{{ windows_config_dest }}"
   notify: "Перезапустить службу Windows"
+  when: infra_state == 'present'
+
+- name: "[Windows] Удаление конфигурационного файла (WIN_FILE)"
+  ansible.windows.win_file:
+    path: "{{ windows_config_dest }}"
+    state: absent
+  when: infra_state == 'absent'

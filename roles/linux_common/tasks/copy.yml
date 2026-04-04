@@ -1,4 +1,4 @@
-- name: "[Linux] Копирование файла конфигурации с контроллера"
+- name: "[Linux] Состояние файла конфигурации (COPY)"
   ansible.builtin.copy:
     src: "{{ linux_config_src }}"
     dest: "{{ linux_config_dest }}"
@@ -6,3 +6,10 @@
     group: root
     mode: '0644'
   notify: "Перезагрузить службу nginx"
+  when: infra_state == 'present'
+
+- name: "[Linux] Удаление файла конфигурации (FILE)"
+  ansible.builtin.file:
+    path: "{{ linux_config_dest }}"
+    state: absent
+  when: infra_state == 'absent'
