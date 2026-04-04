@@ -1,0 +1,36 @@
+# Ansible logs and retry files
+*.log
+*.retry
+ansible.log
+
+# Python virtual environments
+.venv/
+.adnsible_venv/
+venv/
+ENV/
+pyvenv.cfg
+bin/
+include/
+lib/
+lib64/
+share/
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Ansible state and configuration
+.ansible/
+
+# IDE, Editors and OS specific files
+.vscode/
+.idea/
+.project
+.pydevproject
+.settings/
+*.swp
+*~
+.DS_Store
+Thumbs.db
