@@ -4,12 +4,10 @@
   become: yes
 
   tasks:
-    # Шаг 1: Подгрузка переменных роли
     - name: "Загрузка переменных по умолчанию из роли linux_common"
       ansible.builtin.include_vars:
         file: ../roles/linux_common/defaults/main.yml
 
-    # Шаг 2: Выбор нужных задач
     - name: "Блок 1: Проверка доступности (PING)"
       ansible.builtin.include_tasks: ../roles/linux_common/tasks/ping.yml
 
@@ -22,3 +20,7 @@
     - name: "Информационное сообщение"
       ansible.builtin.debug:
         msg: "Выборочная настройка Linux завершена. Мы пропустили настройку пользователей и фаервола."
+
+  handlers:
+    - name: "Перезагрузить службу nginx"
+      ansible.builtin.import_tasks: ../roles/linux_common/handlers/main.yml

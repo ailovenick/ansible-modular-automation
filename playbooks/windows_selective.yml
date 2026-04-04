@@ -3,12 +3,10 @@
   hosts: "{{ target | default('win_servers') }}"
 
   tasks:
-    # Шаг 1: Подгружаем переменные роли
     - name: "Загрузка переменных по умолчанию из роли windows_common"
       ansible.builtin.include_vars:
         file: ../roles/windows_common/defaults/main.yml
 
-    # Шаг 2: Выбираем нужные задачи
     - name: "Блок 1: Проверка доступности (WIN_PING)"
       ansible.builtin.include_tasks: ../roles/windows_common/tasks/ping.yml
 
@@ -21,3 +19,7 @@
     - name: "Информационное сообщение"
       ansible.builtin.debug:
         msg: "Выборочная настройка Windows завершена. Мы не настраивали фаервол и пользователей."
+
+  handlers:
+    - name: "Перезапустить службу Windows"
+      ansible.builtin.import_tasks: ../roles/windows_common/handlers/main.yml

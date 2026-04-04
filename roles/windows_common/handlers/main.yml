@@ -1,3 +1,8 @@
-#SPDX-License-Identifier: MIT-0
 ---
 # handlers file for roles/windows_common
+
+- name: "Перезапустить службу Windows"
+  ansible.windows.win_service:
+    name: "{{ windows_service_name | default('Spooler') }}"
+    state: restarted
+  when: infra_state | default('present') != 'absent'

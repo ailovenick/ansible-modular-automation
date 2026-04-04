@@ -1,3 +1,8 @@
-#SPDX-License-Identifier: MIT-0
 ---
 # handlers file for roles/linux_common
+
+- name: "Перезагрузить службу nginx"
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+  when: infra_state | default('present') != 'absent'

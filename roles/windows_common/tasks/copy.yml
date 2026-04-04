@@ -2,3 +2,4 @@
   ansible.windows.win_copy:
     src: "{{ windows_config_src }}"
     dest: "{{ windows_config_dest }}"
+  notify: "Перезапустить службу Windows"
