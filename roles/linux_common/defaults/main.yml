@@ -18,5 +18,5 @@ linux_user_name: "test-user"
 linux_user_shell: "/bin/bash"
 
 # Пути к файлам конфигурации
-linux_config_src: "server.conf"
+linux_config_src: "../files/server.conf"
 linux_config_dest: "/etc/server.conf"

@@ -15,5 +15,5 @@ windows_user_name: "test-user"
 windows_user_comment: "Пользователь для управления Win-сервером"
 
 # Пути к файлам конфигурации
-windows_config_src: "server.conf"
+windows_config_src: "../files/server.conf"
 windows_config_dest: 'C:\server.conf'
