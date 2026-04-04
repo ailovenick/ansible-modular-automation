@@ -25,3 +25,15 @@
 
 - name: "[Linux] Состояние диагностических проверок (COMMAND)"
   ansible.builtin.include_tasks: commands.yml
+
+# --- ПРИМЕР ИСПОЛЬЗОВАНИЯ ШАБЛОНОВ (Templates) ---
+# Модуль 'template' берет файл из директории 'templates/', 
+# подставляет в него переменные и копирует на сервер.
+#
+# - name: "[Linux] Генерация конфигурации из шаблона"
+#   ansible.builtin.template:
+#     src: example_config.conf.j2
+#     dest: /etc/example_config.conf
+#     owner: root
+#     group: root
+#     mode: '0644'

@@ -1,0 +1,11 @@
+# Пример шаблона для Windows (.j2)
+# В отличие от обычного копирования (win_copy), шаблоны позволяют
+# динамически изменять содержимое файлов в зависимости от хоста.
+
+Hostname: {{ ansible_hostname }}
+User: {{ windows_user_name }}
+Created on: {{ ansible_date_time.iso8601 }}
+
+{% if windows_packages is defined %}
+Installed packages count: {{ windows_packages | length }}
+{% endif %}

@@ -1,0 +1,15 @@
+# Это пример шаблона Jinja2 (.j2)
+# Директория 'templates' используется для хранения файлов, в которые
+# динамически подставляются значения переменных в момент выполнения плейбука.
+
+# Пример использования переменной:
+ServerName {{ ansible_hostname }}
+ListenPort 80
+AdminEmail {{ linux_user_name }}@example.com
+
+# Можно использовать логику:
+{% if infra_state == 'present' %}
+Status: Active
+{% else %}
+Status: Maintenance
+{% endif %}
